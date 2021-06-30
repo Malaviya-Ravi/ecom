@@ -6,7 +6,7 @@ const userSchema = new Schema({
     isAdmin : { type : Boolean, default : false },
     email : { type : String, required : true, unique : true },
     password : { type : String, required : true },
-    active : { type : Boolean, required : true, default : false },
+    active : { type : Boolean, required : true, default : true },
     phone : { type : String }
 },
  { 
@@ -17,7 +17,11 @@ const userSchema = new Schema({
     }
 });
 
-
+//static methods
+userSchema.statics.isExists = async function isExists(email){
+    const user = await this.findOne({email : email});
+    return (user) ? true : false;
+}
 
 const User = mongoose.model('user', userSchema);
 module.exports = { User }; 
