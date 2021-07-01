@@ -33,7 +33,7 @@ function adminAuthMiddleware(req, res, next)
         return next();
     }
     res.status(401);
-    return res.json({"Error" : "You Are Not Authorized To Access Resource!"});
+    return res.json({"Error" : "You Are Not Authorized To Access"});
     
     }catch(error){
        res.status(401);

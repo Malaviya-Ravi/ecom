@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const categrySchema = new Schema({
-    name : { type : String, required : true },
+    name : { type : String, required : true},
    
 },
  { 
@@ -13,7 +13,11 @@ const categrySchema = new Schema({
     }
 });
 
+categrySchema.statics.isExists = async function isExists(name){
+    const category = await this.findOne({name : name});
+    return (category) ? true : false;
+}
 
 
-const Category = mongoose.model('category', categorySchema);
+const Category = mongoose.model('category', categrySchema);
 module.exports = { Category }; 
