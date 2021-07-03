@@ -33,6 +33,14 @@ APIRouter.use('/products', productRouter);
 APIRouter.use('/orders', orderRouter);
 APIRouter.use('/categories', categoryRouter);
 
+APIRouter.get("/media/products/*", (req, res, next) => {
+    const path = req.url;
+    const filePath = `${__dirname}${path}`;
+    console.log(filePath);
+    res.sendFile(filePath, (err) => {
+        next();
+    });
+});
 
 
 app.use(handleErrors);

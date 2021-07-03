@@ -5,7 +5,7 @@ const productSchema = new Schema({
     name : { type : String, required : true },
     price : { type : Number, required : true },
     discount : { type : Number, default : 0},
-    productImage : { type : mongooose.Type.String, required : true},
+    productImage : { type : String, required : true},
     category : { type : mongoose.Types.ObjectId, ref : 'category', required : true},
     active : { type : Boolean, default: true}
 },
@@ -19,5 +19,5 @@ const productSchema = new Schema({
 
 
 
-const Product = mongoose.model('user', productSchema);
+const Product = mongoose.model('product', productSchema);
 module.exports = { Product }; 

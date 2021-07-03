@@ -1,7 +1,7 @@
 const { Category } = require('../models/category');
 const Joi = require('joi');
 
-
+//get categories
 async function getCategories(req, res, next){
     const categories = await Category.find().select('name -_id');
     res.json({categories});
