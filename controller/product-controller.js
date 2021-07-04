@@ -12,6 +12,18 @@ async function getProducts(req, res, next){
     return res.json({"Message" : "Ther Is No Product To Show, Please Insert Product First!"});
 }
 
+async function getProduct(req, res, next){
+    const _id = req.params.product_id;
+    const product = await Product.find({_id});
+    if(product.length)
+    {
+        return res.json({product});
+    }
+    return res.json({"Message" : `Therw Is No Product With ${_id} , Please Insert Product First!`});
+}
+
+
+
 //add product
 
 function validateProductBeforeAdd(body)
@@ -47,4 +59,4 @@ async function addProduct(req, res, next){
     res.json({product});
 }
 
-module.exports = { getProducts, addProduct };
+module.exports = { getProducts,getProduct,  addProduct };

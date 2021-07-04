@@ -2,7 +2,7 @@ const express = require('express');
 const multer  = require('multer');
 const mongoose = require('mongoose');
 const productRouter = express.Router();
-const { getProducts, addProduct } = require('../controller/product-controller');
+const { getProducts, addProduct, getProduct } = require('../controller/product-controller');
 const { adminAuthMiddleware } = require('../middlewares/user-auth-middleware');
 const path = require('path');
 
@@ -25,6 +25,7 @@ var upload = multer({storage});
 
 
 productRouter.get('/', getProducts);
+productRouter.get('/:product_id', getProduct);
 productRouter.post('/',adminAuthMiddleware, upload.single("image"), addProduct);
 
 

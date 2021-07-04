@@ -3,9 +3,16 @@ const Joi = require('joi');
 
 //get categories
 async function getCategories(req, res, next){
-    const categories = await Category.find().select('name -_id');
+    const categories = await Category.find().select('_id name');
     res.json({categories});
 }
+
+async function getCategory(req, res, next){
+    const _id = req.params.category_id;
+    const category = await Category.find({_id}).select('_id name');
+    res.json({category});
+}
+
 
 
 //Add Category
@@ -46,4 +53,4 @@ async function addCategory(req, res, next)
     
 }
 
-module.exports = { getCategories, addCategory };
+module.exports = { getCategories, addCategory, getCategory };
